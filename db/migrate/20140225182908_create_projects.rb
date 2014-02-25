@@ -4,8 +4,8 @@ class CreateProjects < ActiveRecord::Migration
       t.string :name
       t.integer :user_id
       t.integer :goal_in_cents
-      t.DateTime :start_date
-      t.DateTime :end_date
+      t.datetime :start_date
+      t.datetime :end_date
       t.text :description
       t.string :image
 
