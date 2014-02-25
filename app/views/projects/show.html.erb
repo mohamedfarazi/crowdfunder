@@ -1,6 +1,12 @@
 <p>Project Name: <%= @project.name %></p>
 <p>Project Goal: <%= @project.goal_in_cents %></p>
-<p>Project Start Date: <%= @project.start_date %></p>
-<p>Project End Date: <%= @project.end_date %></p>
+<p>Project Start Date: <%= @project.start_date.strftime "%A, %-d %B %Y" %></p>
+<p>Project End Date: <%= @project.end_date.strftime "%A, %-d %B %Y" %></p>
 <p>Project Description: <%= @project.description %></p>
 <%= image_tag(@project.image) %>
+
+<% @project.pledges.each do |p| %>
+<%= p.title %>
+<%= p.description %>
+<%= p.amount_in_cents %>
+<% end %>
