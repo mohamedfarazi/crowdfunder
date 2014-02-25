@@ -1,4 +1,14 @@
 Crowdfunder::Application.routes.draw do
+
+
+  get "projects/index"
+  get "projects/create"
+  get "projects/update"
+  get "projects/new"
+  get "projects/destroy"
+  get "projects/show"
+  get "projects/edit"
+  resources :projects
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
