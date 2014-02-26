@@ -34,6 +34,11 @@ ActiveRecord::Schema.define(version: 20140226172719) do
     t.datetime "updated_at"
   end
 
+  create_table "pledges_backers", id: false, force: true do |t|
+    t.integer "pledge_id"
+    t.integer "user_id"
+  end
+
   create_table "projects", force: true do |t|
     t.string   "name"
     t.integer  "owner_id"
