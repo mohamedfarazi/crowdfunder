@@ -7,14 +7,16 @@
 
 
 <div class="breakpoints">
-<% @project.breakpoints.each do |p| %>
-<p>Pledge Level: <%= p.title %></p>
-<p>Pledge Description: <%= p.description %></p>
-<p>Pledge Amount: <%= p.amount_in_cents %> </p>
-<% if current_user && @project.owner != current_user %>
-	<%= link_to "Pledge at this tier", new_pledge_path(@breakpoint) %>
-<% end %>
-<% end %>
+<% @project.breakpoints.each do |bp| %>
+<p>Pledge Level: <%= bp.title %></p>
+<p>Pledge Description: <%= bp.description %></p>
+<p>Pledge Amount: <%= bp.amount_in_cents %> </p>
+	<% if current_user && @project.owner != current_user %>
+		<%= form_tag('/pledges', remote: true) %>
+		<%= hidden_field_tag 'bp_id', bp.id %>
+		<%= submit_tag "Pledge at this tier" %>
+		<% end %>
+	<% end %>
 <% if @project.owner == current_user  %>
 <p><%= link_to "Add another tier", new_project_breakpoint_path(@project) %>
 <% end %>

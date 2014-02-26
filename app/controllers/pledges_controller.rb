@@ -1,22 +1,23 @@
 class PledgesController < ApplicationController
-	# before_filter :load_breakpoint
+	before_filter :load_breakpoint
 
 	def new
-		@pledge = Pledge.new
+
 	end
 
 	def create
-		@pledge = Pledge.new(pledge_params)
+		Rails.logger.info(params.inspect)
+		@pledge = Pledge.new
 		@pledge.backer = current_user
 		@pledge.project = @breakpoint.project
 		@pledge.breakpoint = @breakpoint
 		@pledge.active = true
 
 		if @pledge.save
-			redirect_to project_path(@project)
+			redirect_to project_path(@breakpoint.project)
 
 		else
-		  redirect_to project_path(@project)
+		  redirect_to project_path(@breakpoint.project)
 	 end
 
 	end
@@ -34,8 +35,8 @@ class PledgesController < ApplicationController
 		params.require(:pledge).permit(:project_id, :breakpoint_id, :backer_id, :active)
 	end
 
-# 	def load_breakpoint
+	def load_breakpoint
 
-# 	@breakpoint = Breakpoint.find(params[:project][:breakpoint_id])
-# end
+	@breakpoint = Breakpoint.find(params[:bp_id])
+end
 end
