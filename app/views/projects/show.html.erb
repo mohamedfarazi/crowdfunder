@@ -12,4 +12,7 @@
 <p>Pledge Description: <%= p.description %></p>
 <p>Pledge Amount: <%= p.amount_in_cents %> </p>
 <% end %>
+<% if @project.owner == current_user  %>
+<p><%= link_to "Add another tier", new_project_breakpoint_path(@project) %>
+<% end %>
 </div>
