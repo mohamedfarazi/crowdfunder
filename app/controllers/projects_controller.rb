@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.owner = current_user
     if @project.save
-      redirect_to project_path(@project)
+      redirect_to new_project_pledge_path(@project)
     else
       render :new
     end

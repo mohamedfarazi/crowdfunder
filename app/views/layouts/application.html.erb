@@ -9,7 +9,7 @@
 <body>
 
 <% if current_user %>
-
+<%= link_to "Home", :root %>
 <p>Hi, <%= current_user.name %> <%= link_to "Log Out", session_path("current"), :method => :delete %></p>
 
 <%= link_to "Add new projects", new_project_path %>

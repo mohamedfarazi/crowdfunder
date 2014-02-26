@@ -1,7 +1,9 @@
 Crowdfunder::Application.routes.draw do
 
-  resources :pledges
-  resources :projects
+
+  resources :projects do
+    resources :pledges, on: :collection
+  end
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
   root 'projects#index'

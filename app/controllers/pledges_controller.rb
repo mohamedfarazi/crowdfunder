@@ -10,7 +10,7 @@ class PledgesController < ApplicationController
 	    @pledge = Pledge.new(pledge_params)
 	    @pledge.project = @project
 	    if @pledge.save
-	      redirect_to pledges_path(@pledge)
+	      redirect_to project_path(@project)
 	    else
 	      render :new
 	    end
