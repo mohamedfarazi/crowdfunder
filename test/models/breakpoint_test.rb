@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PledgesBackersTest < ActiveSupport::TestCase
+class BreakpointTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

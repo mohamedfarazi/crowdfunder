@@ -2,7 +2,7 @@ Crowdfunder::Application.routes.draw do
 
 
   resources :projects do
-    resources :pledges, on: :collection
+    resources :breakpoints, on: :collection
   end
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
