@@ -1,12 +1,13 @@
+<%= image_tag(@project.image, size: "300x500") %>
 <p>Project Name: <%= @project.name %></p>
 <p>Project Goal: <%= @project.goal_in_cents %></p>
 <p>Project Start Date: <%= @project.start_date.strftime "%A, %-d %B %Y" %></p>
 <p>Project End Date: <%= @project.end_date.strftime "%A, %-d %B %Y" %></p>
 <p>Project Description: <%= @project.description %></p>
-<%= image_tag(@project.image) %>
 
-<div class="pledges">
-<% @project.pledges.each do |p| %>
+
+<div class="breakpoints">
+<% @project.breakpoints.each do |p| %>
 <p>Pledge Level: <%= p.title %></p></p>
 <p>Pledge Description: <%= p.description %></p>
 <p>Pledge Amount: <%= p.amount_in_cents %> </p>

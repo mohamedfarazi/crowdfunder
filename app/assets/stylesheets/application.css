@@ -12,6 +12,15 @@
  *= require_tree .
  */
 
-.pledges {
+.breakpoints {
 	float: right;
+}
+
+.login {
+	float: right;
+}
+
+.nav {
+	background-color: grey;
+	height: 100px;
 }

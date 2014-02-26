@@ -6,20 +6,27 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
+<nav class="nav">
+		<div class="home">
+			<%= link_to "Home", :root %>
+		</div>
+		<div class="logo">
+			<%= image_tag("https://www.kickstarter.com/download/kickstarter-logo-grey.png", size: "600x50") %>
+		</div>
+		<div class="login">
+			<% if current_user %>
+			<p>Hi, <%= current_user.name %> <%= link_to "Log Out", session_path("current"), :method => :delete %></p>
+			<%= link_to "Add new projects", new_project_path %>
+			<% else %>
+				<%= link_to "Login", new_session_path %> | <%= link_to "Register", new_user_path %>
+			<% end %>
+		</div>
+</nav>
 <body>
 
-<% if current_user %>
-<%= link_to "Home", :root %>
-<p>Hi, <%= current_user.name %> <%= link_to "Log Out", session_path("current"), :method => :delete %></p>
-
-<%= link_to "Add new projects", new_project_path %>
-
-<% else %>
 
 
-<%= link_to "Login", new_session_path %> | <%= link_to "Register", new_user_path %>
 
-<% end %>
 
 <%= yield %>
 
