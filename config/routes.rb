@@ -4,6 +4,7 @@ Crowdfunder::Application.routes.draw do
   resources :projects do
     resources :breakpoints, on: :collection
   end
+  resources :pledges, :except => [:index]
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
   root 'projects#index'
