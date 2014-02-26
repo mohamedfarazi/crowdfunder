@@ -21,6 +21,10 @@
 }
 
 .nav {
-	background-color: grey;
+	background-color: tomato;
 	height: 100px;
+}
+
+.display_projects {
+	float: left;
 }
