@@ -1,7 +1,7 @@
 <%= image_tag(@project.image, size: "300x500") %>
 <p>Project Name: <%= @project.name %></p>
 <p>Project Goal: <%= @project.goal_in_cents %></p>
-<p>Pledged So Far: <%= total_pledges(@project) %>
+<p id="pledged">Pledged So Far: <%= total_pledges(@project) %>
 <p>Project Start Date: <%= @project.start_date.strftime "%A, %-d %B %Y" %></p>
 <p>Project End Date: <%= @project.end_date.strftime "%A, %-d %B %Y" %></p>
 <p>Project Description: <%= @project.description %></p>
