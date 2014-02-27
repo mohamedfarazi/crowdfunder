@@ -11,17 +11,4 @@ $('.pledge_button').click(function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
