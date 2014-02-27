@@ -1,5 +1,17 @@
-<div class="display_projects">
-<%= link_to (image_tag(project.image, size: "300x500")), project %>
-<h2><%= project.name %></h2>
-<h3>Goal: <%= number_to_currency(project.goal_in_cents.to_f/100) %></h3>
+<div class="col4">
+	<div class="img-thumb-back">
+	<%= link_to image_tag(project.image, class: "img-thumb"), project %>
+
+	<table class="prod-overview">
+		<tr>
+			<th colspan="2">
+			<%= link_to truncate(project.name, :length => 30, :separator => ' '), project  %>
+			</th>
+		</tr>
+		<tr>
+			<td>Goal: <%= number_to_currency(project.goal_in_cents.to_f/100) %></td>
+			<td>Raised: <%= number_to_currency(total_pledges(project).to_f/100)%></td>
+		</tr>
+	</table>
+	</div>
 </div>
