@@ -11,56 +11,61 @@
 			</th>
 		</tr>
 		<tr>
-			<td><h4>Goal: <%= number_to_currency(@project.goal_in_cents.to_f/100) %></h4></td>
+			<td class="byline">
+			<h4>by <%= @project.owner.name %></h4>
+			</td>
 		</tr>
 		<tr>
-			<td id="pledged">Raised: <%= number_to_currency(total_pledges(@project).to_f/100) %></td>
+			<td><h4>Goal: <%= display_money(@project.goal_in_cents) %></h4></td>
+		</tr>
+		<tr>
+			<td id="pledged">Raised: <%= display_money(total_pledges(@project)) %></td>
 		</tr>
 		<tr>
 			<td>Begins: <%= @project.start_date.strftime "%A, %-d %B %Y" %></td>
 		</tr>
 		<tr>
-			<td>End: <%= @project.end_date.strftime "%A, %-d %B %Y" %></td>
+			<td>Ends: <%= @project.end_date.strftime "%A, %-d %B %Y" %></td>
+		</tr>
+		<tr>
+			<td>
+				<div id="countdowntimer">
+					<span id="future_date"></span>
+				</div>
+			</td>
 		</tr>
 		<tr>
 			<td><%= @project[:description] %></td>
 		</tr>
 		</table>
-
-		<div id="countdowntimer">
-			<span id="future_date"></span>
-		</div>
 </div>
 
 
 	<div class="col3">
 			<% @project.breakpoints.by_price.each do |bp| %>
-			<table class="prod-full">
-				<tr>
-					<th class="label-title">
-					<%= bp.title %>
-					</th>
-				</tr>
-				<tr>
-					<td><%= number_to_currency(bp.amount_in_cents.to_f/100) %></td>
-				</tr>
-				<tr>
-					<td><%= bp.description %></td>
-				</tr>
-				<tr>
-					<td>
-						<% if current_user && @project.owner != current_user %>
-							<%= form_tag('/pledges', remote: true) %>
-							<%= hidden_field_tag 'bp_id', bp.id %>
-							<%= submit_tag "Pledge at this tier ", class: "button pledge_button" %>
-						<% end %>
-					</td>
-				</tr>
-			</table>
+				<div class="prod-full">
+						<div class="label-title">
+							<%= bp.title %>
+						</div>
+						<p><%= display_money(bp.amount_in_cents) %></p>
+						<p><%= bp.description %></p>
+						<p>
+							<% if current_user && (@project.owner != current_user) %>
+								<%= form_tag('/pledges', remote: true, class: "breakpoint") do %>
+									<%= hidden_field_tag 'bp_id', bp.id %>
+									<%= submit_tag "Pledge at this tier ", class: "button pledge_button" %>
+								<% end %>
+							<% end %>
+						</p>
+				</div>
 			<% end %>
-		<% if @project.owner == current_user  %>
-			<p><%= link_to "Add another tier", new_project_breakpoint_path(@project) %></p>
-		<% end %>
+			<div class="prod-full">
+				<% if @project.owner == current_user  %>
+					<p><%= link_to "Add another tier", new_project_breakpoint_path(@project) %></p>
+				<% elsif !current_user %>
+					<p>Please <%= link_to "log in", new_session_path %> or <%= link_to "register", new_user_path %> to back this project</p>
+				<% end %>
+			</div>
 </div>
 </div>
 </div>
@@ -76,5 +81,4 @@ $(function(){
 	});
 });
 </script>
-
 

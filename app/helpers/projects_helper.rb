@@ -6,4 +6,16 @@ module ProjectsHelper
 		end
 		total_pledges
 	end
+
+	def display_money(n_cents)
+		number_to_currency(n_cents.to_f/100, precision: 0)
+	end
+
+	def backed_bp(user, project)
+		if user.backed_projects.include?(project)
+			return user.breakpoints.where(project: project)
+		else
+			return false
+		end
+	end
 end
