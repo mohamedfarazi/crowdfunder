@@ -10,8 +10,9 @@
 
 	<div>
 	<h3>Here are the projects you have backed: </h3>
-		<% current_user.backed_projects.each do |bp|%>
-		<%= link_to bp.name, project_path(bp) %></br>
+		<% current_user.pledges.each do |bp|%>
+		<%= link_to bp.project.name, project_path(bp.project.id)%> | <%= number_to_currency(bp.breakpoint.amount_in_cents.to_f/100) %></br>
+		<%=  %>
 		<% end %></br>
 	</div>
 
@@ -20,3 +21,4 @@
 	<%= total_raised %>
 	</div>
 <% end %>
+
