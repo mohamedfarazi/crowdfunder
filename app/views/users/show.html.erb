@@ -1,1 +1,6 @@
 <h1>Here you are:</h1>
+
+<h3>Here are the projects you backed:</h3>
+<% current_user.breakpoints.each do |bp|%>
+<%= bp.title %></br>
+<% end %>
