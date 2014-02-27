@@ -18,7 +18,7 @@
 	      <h4 class="main-nav">
 	      	  <!-- <br>      	     -->
 		      <% if current_user %>
-		      <p>Hi, <%= current_user.name%>&nbsp;&nbsp;&nbsp;<%#= link_to image_tag('users.png', size: "32", alt: "Your Account"), current_user %>&nbsp;&nbsp;&nbsp;<%= link_to "Add new project", new_project_path %></p>
+		      <p>Hi, <%= link_to current_user.name, user_path(current_user)%>&nbsp;&nbsp;&nbsp;<%#= link_to image_tag('users.png', size: "32", alt: "Your Account"), current_user %>&nbsp;&nbsp;&nbsp;<%= link_to "Add new project", new_project_path %></p>
 		        <p><%= link_to "Log out", session_path("current"), :method => :delete %></p>
 		      <% else %>
 		        <%= link_to "Log in", new_session_path %> or <%= link_to "Sign up", new_user_path %>
