@@ -2,33 +2,55 @@
 <html>
 <head>
   <title>Crowdfunder</title>
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<nav class="nav">
-		<div class="home">
-			<%= link_to "Home", :root %>
-		</div>
-		<div class="logo">
-			<%= image_tag("https://www.kickstarter.com/download/kickstarter-logo-grey.png", size: "600x50") %>
-		</div>
-		<div class="login">
-			<% if current_user %>
-			<p>Hi, <%= link_to current_user.name, user_path(current_user)%> <%= link_to "Log Out", session_path("current"), :method => :delete %></p>
-			<%= link_to "Add new projects", new_project_path %>
-			<% else %>
-				<%= link_to "Login", new_session_path %> | <%= link_to "Register", new_user_path %>
-			<% end %>
-		</div>
-</nav>
 <body>
+<div id="wrap">
+	<header>
+	  <div class="frame">
+	    <div class="col2">
+	      <h1 class="site-title"><%= link_to "Crowdfunder", :root %></h1>
+	    </div>
+	    <div class="col2">
+	      <h4 class="main-nav">
+	      	  <!-- <br>      	     -->
+		      <% if current_user %>
+		      <p>Hi, <%= current_user.name%>&nbsp;&nbsp;&nbsp;<%#= link_to image_tag('users.png', size: "32", alt: "Your Account"), current_user %>&nbsp;&nbsp;&nbsp;<%= link_to "Add new project", new_project_path %></p>
+		        <p><%= link_to "Log out", session_path("current"), :method => :delete %></p>
+		      <% else %>
+		        <%= link_to "Log in", new_session_path %> or <%= link_to "Sign up", new_user_path %>
+		      <% end %>
+		   </h4>
 
-
-
+		</div>
+	  </div>
+	</header>
+<div class="frame">
+  <% if flash[:notice] %>
+	<p id="notice"><%= flash[:notice] %></p>
+	<% end %>
+</div>
 
 
 <%= yield %>
 
+</div>
+	<div id="footer">
+		<div class="frame">
+			<div class="col1">
+			<p class="copy">2014 by M.E.N. at Bitmaker Labs</p>
+		</div>
+	</div>
+</div>
+
 </body>
 </html>
+
+<!--[if !IE 7]>
+	<style type="text/css">
+		#wrap {display:table;height:100%}
+	</style>
+<![endif]-->

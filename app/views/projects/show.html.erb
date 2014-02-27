@@ -1,24 +1,61 @@
-<%= image_tag(@project.image, size: "300x500") %>
-<p>Project Name: <%= @project.name %></p>
-<p>Project Goal: <%= @project.goal_in_cents %></p>
-<p id="pledged">Pledged So Far: <%= total_pledges(@project) %>
-<p>Project Start Date: <%= @project.start_date.strftime "%A, %-d %B %Y" %></p>
-<p>Project End Date: <%= @project.end_date.strftime "%A, %-d %B %Y" %></p>
-<p>Project Description: <%= @project.description %></p>
+<div id="main">
+<div class="frame">
+	<div class="col66">
+		<div class="img-back">
+			<%= image_tag(@project.image, class: "img-full")  %>
+		</div>
+		<table class="prod-full">
+		<tr>
+			<th class="label-title">
+			<h3><%= @project[:name] %></h3>
+			</th>
+		</tr>
+		<tr>
+			<td><h4>Goal: <%= number_to_currency(@project.goal_in_cents.to_f/100) %></h4></td>
+		</tr>
+		<tr>
+			<td id="pledged">Raised: <%= number_to_currency(total_pledges(@project).to_f/100) %></td>
+		</tr>
+		<tr>
+			<td>Begins: <%= @project.start_date.strftime "%A, %-d %B %Y" %></td>
+		</tr>
+		<tr>
+			<td>End: <%= @project.end_date.strftime "%A, %-d %B %Y" %></td>
+		</tr>
+		<tr>
+			<td><%= @project[:description] %></td>
+		</tr>
+		</table>
+	</div>
 
-
-<div class="breakpoints">
-<% @project.breakpoints.each do |bp| %>
-<p>Pledge Level: <%= bp.title %></p>
-<p>Pledge Description: <%= bp.description %></p>
-<p>Pledge Amount: <%= bp.amount_in_cents %> </p>
-	<% if current_user && @project.owner != current_user%>
-		<%= form_tag('/pledges', remote: true) %>
-		<%= hidden_field_tag 'bp_id', bp.id %>
-		<%= submit_tag "Pledge at this tier", class: "pledge_button" %>
+	<div class="col3">
+			<% @project.breakpoints.by_price.each do |bp| %>
+			<table class="prod-full">
+				<tr>
+					<th class="label-title">
+					<%= bp.title %>
+					</th>
+				</tr>
+				<tr>
+					<td><%= number_to_currency(bp.amount_in_cents.to_f/100) %></td>
+				</tr>
+				<tr>
+					<td><%= bp.description %></td>
+				</tr>
+				<tr>
+					<td>
+						<% if current_user && @project.owner != current_user %>
+							<%= form_tag('/pledges', remote: true) %>
+							<%= hidden_field_tag 'bp_id', bp.id %>
+							<%= submit_tag "Pledge at this tier ", class: "button" %>
+						<% end %>
+					</td>
+				</tr>
+			</table>
+			<% end %>
+		<% if @project.owner == current_user  %>
+			<p><%= link_to "Add another tier", new_project_breakpoint_path(@project) %>
 		<% end %>
-	<% end %>
-<% if @project.owner == current_user  %>
-<p><%= link_to "Add another tier", new_project_breakpoint_path(@project) %>
-<% end %>
+	</div>
+</div>
 </div>
