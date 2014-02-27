@@ -26,7 +26,12 @@
 			<td><%= @project[:description] %></td>
 		</tr>
 		</table>
-	</div>
+
+		<div id="countdowntimer">
+			<span id="future_date"></span>
+		</div>
+</div>
+
 
 	<div class="col3">
 			<% @project.breakpoints.by_price.each do |bp| %>
@@ -57,20 +62,10 @@
 			<p><%= link_to "Add another tier", new_project_breakpoint_path(@project) %>
 		<% end %>
 
-	<% end %>
 <% if @project.owner == current_user  %>
 <p><%= link_to "Add another tier", new_project_breakpoint_path(@project) %>
 <% end %>
 </div>
-
-<!-- <script type="text/javascript" src="/Volumes/Storage/LilNeddy/Desktop/clock js/LIB/jquery-2.0.3.js"></script>
-<script type="text/javascript" src="/Volumes/Storage/LilNeddy/Desktop/clock js/jquery.countdownTimer.js"></script>
-<link rel="stylesheet" type="text/css" href="/Volumes/Storage/LilNeddy/Desktop/clock js/CSS/jquery.countdownTimer.css" /> -->
-
-
-
-<div id="countdowntimer"><span id="future_date"><span></div>
-
 
 <script type="text/javascript">
 $(function(){
@@ -83,6 +78,4 @@ $(function(){
 	});
 });
 </script>
-	</div>
-</div>
-</div>
+
