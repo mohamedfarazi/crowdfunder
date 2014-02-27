@@ -59,18 +59,16 @@
 			</table>
 			<% end %>
 		<% if @project.owner == current_user  %>
-			<p><%= link_to "Add another tier", new_project_breakpoint_path(@project) %>
+			<p><%= link_to "Add another tier", new_project_breakpoint_path(@project) %></p>
 		<% end %>
-
-<% if @project.owner == current_user  %>
-<p><%= link_to "Add another tier", new_project_breakpoint_path(@project) %>
-<% end %>
+</div>
+</div>
 </div>
 
 <script type="text/javascript">
 $(function(){
 	$("#future_date").countdowntimer({
-      dateAndTime : "2014/07/03 00:00:00",
+      dateAndTime : "<%= "#{@project.end_date.strftime "%Y/%m/%d %T"}" %>",
       size : "lg",
       borderColor: "#FFFFFF",
       backgroundColor: "#AAAAAA",
@@ -78,4 +76,5 @@ $(function(){
 	});
 });
 </script>
+
 
