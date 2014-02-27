@@ -1,11 +1,32 @@
-<%= form_for @user do |f|%>
-		<p><%= f.label :name %></br>
-		<%= f.text_field :name %></p>
-	<p><%= f.label :email %></br>
-		<%= f.text_field :email %></p>
-		<p><%= f.label :password %></br>
-		<%= f.password_field :password %></p>
-		<p><%= f.label :password_confirmation %></br>
-		<%= f.password_field :password_confirmation %></p>
-		<%= f.submit %>
-<% end %>
+  <div id="main">
+    <div class="frame">
+      <div class="col1 main-content" >
+        <h1>Sign Up</h1>
+
+        <%= form_for @user do |f| %>
+        <%= render partial: "shared/form_errors", locals: {anyword: @user} %>
+
+          <div class="form-label">
+            <%= f.label :email %><br/>
+            <%= f.text_field :email %>
+          </div>
+          <div class="form-label">
+            <%= f.label :name %><br/>
+            <%= f.text_field :name %>
+          </div>
+          <div class="form-label">
+            <%= f.label :password %><br/>
+            <%= f.password_field :password %>
+          </div>
+          <div class="form-label">
+            <%= f.label :password_confirmation %><br/>
+            <%= f.password_field :password_confirmation %>
+          </div>
+          <div class="form-label">
+          	<%= f.submit "Save", class: "button" %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>

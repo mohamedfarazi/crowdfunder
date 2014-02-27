@@ -11,16 +11,3 @@
  *= require_self
  *= require_tree .
  */
-
-.breakpoints {
-	float: right;
-}
-
-.login {
-	float: right;
-}
-
-.nav {
-	background-color: grey;
-	height: 100px;
-}
