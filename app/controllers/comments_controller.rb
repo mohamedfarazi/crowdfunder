@@ -1,23 +1,26 @@
 class CommentsController < ApplicationController
 
+	def new
+		@comment = Comment.new
+	end
+
+	def index
+		@comments = Comment.all
+	end
 
 	def show
 		@comment = Comment.find(:params[:id])
 	end
 
 	def create
-		@comment = @project.comments.build(comment_params)
-		@comment.user_id = current_user.id
+		@comment = Comment.new(comment_params)
+		@comment.user_id = current_user
 
-		respond_to do |format|
 			if @comment.save
-				format.html { redirect_to project_path(@project.id), notice: 'Comment added!'}
-				format.js {}
+				redirect_to comment_path(@comment)
 			else
-				format.html { render 'projects/show', alert: "There was an error. Your comment didn't save."}
-				format.js {}
+				render :new
 			end
-		end
 	end
 
 	def destroy
@@ -27,12 +30,12 @@ class CommentsController < ApplicationController
 
 private
 
-	def load_project
-		@project = Project.find(params[:id])
-	end
+	# def load_project
+	# 	@project = Project.find(params[:id])
+	# end
 
 	def comment_params
-	params.require(:comment).permit(:user_id, :project_id)
+	params.require(:comment).permit(:user_id, :project_id, :description)
 	end
 
 end
