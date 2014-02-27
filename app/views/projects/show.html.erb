@@ -43,7 +43,7 @@
 
 	<div class="col3">
 			<% @project.breakpoints.by_price.each do |bp| %>
-				<div class="prod-full">
+				<div class="prod-full" id="tier-<%= bp.id %>">
 						<div class="label-title">
 							<%= bp.title %>
 						</div>
@@ -80,7 +80,7 @@
 $(function(){
 	$("#future_date").countdowntimer({
       dateAndTime : "<%= "#{@project.end_date.strftime "%Y/%m/%d %T"}" %>",
-      size : "md",
+      size : "sm",
       borderColor: "#FFFFFF",
       backgroundColor: "#AAAAAA",
       fontColor: "#FFFFFF"
