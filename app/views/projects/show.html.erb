@@ -50,10 +50,16 @@
 						<p><%= display_money(bp.amount_in_cents) %></p>
 						<p><%= bp.description %></p>
 						<p>
-							<% if current_user && (@project.owner != current_user) %>
+							<% if current_user %>
+							<% if backed_bp(current_user, @project) %>
+								<% if backed_bp(current_user, @project) == bp %>
+								<h4 id="pledge_bp">You pledged at this tier</h4>
+								<% end %>
+							 <% elsif (@project.owner != current_user) %>
 								<%= form_tag('/pledges', remote: true, class: "breakpoint") do %>
 									<%= hidden_field_tag 'bp_id', bp.id %>
 									<%= submit_tag "Pledge at this tier ", class: "button pledge_button" %>
+								<% end %>
 								<% end %>
 							<% end %>
 						</p>

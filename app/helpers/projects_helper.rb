@@ -13,7 +13,7 @@ module ProjectsHelper
 
 	def backed_bp(user, project)
 		if user.backed_projects.include?(project)
-			return user.breakpoints.where(project: project)
+			return user.breakpoints.where(project: project)[0]
 		else
 			return false
 		end
