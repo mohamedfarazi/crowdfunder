@@ -15,7 +15,7 @@
 		</div>
 		<div class="login">
 			<% if current_user %>
-			<p>Hi, <%= current_user.name %> <%= link_to "Log Out", session_path("current"), :method => :delete %></p>
+			<p>Hi, <%= link_to current_user.name, user_path(current_user)%> <%= link_to "Log Out", session_path("current"), :method => :delete %></p>
 			<%= link_to "Add new projects", new_project_path %>
 			<% else %>
 				<%= link_to "Login", new_session_path %> | <%= link_to "Register", new_user_path %>

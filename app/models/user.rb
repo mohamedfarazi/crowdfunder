@@ -6,3 +6,5 @@ class User < ActiveRecord::Base
 	has_many :breakpoints, :through => :pledges, :source => :backer
 	has_many :pledges, foreign_key: "backer_id"
 end
+
+
