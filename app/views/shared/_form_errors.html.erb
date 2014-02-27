@@ -1,0 +1,11 @@
+<!-- anyword replaced @product, but its value (@product) must be passed when it is rendered in product form -->
+<% if anyword.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= pluralize(anyword.errors.count, "error") %> prohibited this from being saved:</h3>
+      <ul>
+      <% anyword.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
