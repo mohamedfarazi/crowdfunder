@@ -1,0 +1,251 @@
+/*GRID SYSTEM*/
+/*DO NOT CHANGE*/
+* {
+	margin: 0;
+	padding: 0;
+	/*Content box: padding, border & margin add to the size of the box
+	Border box: the size of the border is the outer limit*/
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/*to set relative sizes, it must be wrapped in a fixed-width parent*/
+.frame {
+	width: 100%;
+}
+
+.col1 { width: 100%;}
+.col2 { width: 50%;}
+.col3 { width: 33.3333%;}
+.col4 { width: 25%;}
+.col66 { width: 66.666%;}
+
+/*advanced selector pattern-matches all classes with 'col' in name*/
+[class*='col'] {
+	float: left;
+	padding: 0.3em;
+}
+
+/*advanced selector :after clears the floating blocks, instead of adding empty content in html*/
+.frame:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+/*********************************************************************************************/
+/* CUSTOM STYLES */
+
+.frame {
+	width: 1024px;
+	margin: 0 auto; /*this will center*/
+}
+
+
+header {
+	background-color: #009933;
+	/*background-image:url('palm3.png');*/
+	/*background-repeat: no-repeat;*/
+	/*background-position:center top;  */
+	height: 80px; /*this is min height. it will resize if font is larger*/
+	padding-top: 12px;
+	font-family: 'Roboto Condensed', Verdana, sans-serif;
+
+}
+
+header, header a, header a:visited {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+header a:hover {
+	text-decoration: underline;
+}
+
+.site-title a:hover {
+	text-decoration: none;
+}
+.main-nav, #notice {
+	text-align: right;
+}
+
+#notice {
+	font-size: 85%;
+	font-style: italic;
+	color: #7D7870;
+}
+
+body {
+	background-color: #EDEAE6 ;
+	/*background-image:url('palm3.png');*/
+	/*background-repeat: no-repeat;*/
+	/*background-position:center top; */
+	font-family: Arial, sans-serif;
+	color: #3B362F;
+}
+
+.img-thumb {
+	max-width: 240px;
+	max-height: 236px;
+}
+
+.img-thumb-back {
+	float: left;
+	text-align: center;
+	height: 300px;
+	width: 246px;
+	padding: 5px;
+	margin: 5px;
+	background-color: #FFFFFF;
+	color: #807566;
+	position: relative;
+}
+
+.img-back {
+	width: 335px;
+	position: relative;
+}
+
+.img-full {
+	max-width: 100%;
+	text-align: right;
+	padding: 20px;
+}
+
+.prod-overview {
+	position: absolute;
+	bottom: 5px;
+	width: 100%;
+	font-family: Courier, sans-serif;
+	font-size: 95%;
+}
+
+.new-prod-link {
+	padding: 100px 0;
+	text-align: center;
+	font-family: Courier, sans-serif;
+	font-size: 95%;
+}
+
+.pagination {
+/*	float: right;
+	padding-right: 30px;*/
+	text-align: center;
+}
+
+.prod-full {
+	padding: 20px;
+	/*margin: 5px;*/
+}
+
+.prod-overview a, .prod-overview a:visited {
+	color: #009933;
+	text-decoration: none;
+}
+
+.prod-overview a:hover {
+	text-decoration: underline;
+}
+
+
+.label-title {
+	color: #009933;
+	text-align: left;
+	/*font-family: 'Roboto Condensed', Verdana, sans-serif;*/
+}
+
+.review {
+	margin: 5px;
+	padding: 5px;
+	border-top: solid 1px;
+	border-color: #7D7870;
+	width: 90%;
+}
+
+.byline {
+	font-size: 90%;
+	color: #7D7870;
+}
+
+.navigation-links {
+	float: right;
+	padding: 0 5px;
+}
+
+a, a:visited, .navigation-links a, .navigation-links a:visited {
+text-decoration: none;
+color: #009933;
+}
+
+a:hover, .navigation-links a:hover {
+	text-decoration: underline;
+}
+.main-content {
+	text-align: left;
+	padding: 20px 0 10px 5px;
+}
+
+.main-content h1 {
+	color: #009933;
+	font-weight: 300;
+}
+
+.form-label {
+	padding: 10px 0 0 0 ;
+}
+
+
+.copy {
+	float: right;
+}
+
+
+#footer {
+	background-color: #7D7870;
+	color: #EDEAE6 ;
+	font-size: 85%;
+	padding: 6px;
+	height: 40px;
+	position: relative;
+	margin-top: -40px; /* negative value of footer height */
+	clear:both;
+}
+
+html, body {height: 100%;}
+
+#wrap {min-height: 100%;}
+
+#main {overflow:auto;
+	padding-bottom: 40px;}  /* must be same height as the footer */
+
+/*Opera Fix*/
+body:before {
+	content:"";
+	height:100%;
+	float:left;
+	width:0;
+	margin-top:-32767px;
+}
+
+
+
+/*
+
+
+.breakpoints {
+	float: right;
+}
+
+.login {
+	float: right;
+}
+
+.nav {
+	background-color: tomato;
+	height: 100px;
+}
+
+.display_projects {
+	float: left;
+}*/
