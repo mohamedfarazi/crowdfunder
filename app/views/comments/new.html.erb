@@ -1,6 +1,6 @@
 <h1> this is some stuff here</h1>
 
-<%= form_for @comment do |f| %>
+<%= form_for [ @project, @comment ] do |f| %>
 <p class="form-label">
 	<%= f.label :title %></br>
 	<%= f.text_field :title %>

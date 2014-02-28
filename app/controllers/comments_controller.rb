@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+	before_filter :load_project
+
 	def new
 		@comment = Comment.new
 	end
@@ -9,15 +11,15 @@ class CommentsController < ApplicationController
 	end
 
 	def show
-		@comment = Comment.find(:params[:id])
+		@comment = Comment.find(params[:id])
 	end
 
 	def create
-		@comment = Comment.new(comment_params)
-		@comment.user_id = current_user
+		@comment = @project.comments.build(comment_params)
+		@comment.user_id = current_user.id
 
 			if @comment.save
-				redirect_to comment_path(@comment)
+				redirect_to project_comment_path(@project, @comment)
 			else
 				render :new
 			end
@@ -30,12 +32,12 @@ class CommentsController < ApplicationController
 
 private
 
-	# def load_project
-	# 	@project = Project.find(params[:id])
-	# end
+	def load_project
+		@project = Project.find(params[:project_id])
+	end
 
 	def comment_params
-	params.require(:comment).permit(:user_id, :project_id, :description)
+	params.require(:comment).permit(:title, :project_id, :description)
 	end
 
 end
