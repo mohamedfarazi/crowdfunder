@@ -110,7 +110,7 @@ body {
 .img-full {
 	max-width: 100%;
 	text-align: right;
-	padding: 20px;
+	padding: 10px;
 }
 
 .prod-overview {
@@ -128,6 +128,11 @@ body {
 	font-size: 95%;
 }
 
+#countdowntimer {
+	padding: 8px 0 10px 0;
+}
+
+
 .pagination {
 /*	float: right;
 	padding-right: 30px;*/
@@ -135,7 +140,7 @@ body {
 }
 
 .prod-full {
-	padding: 20px;
+	padding: 10px;
 	/*margin: 5px;*/
 }
 
@@ -152,6 +157,7 @@ body {
 .label-title {
 	color: #009933;
 	text-align: left;
+	font-weight: bold;
 	/*font-family: 'Roboto Condensed', Verdana, sans-serif;*/
 }
 
@@ -166,6 +172,8 @@ body {
 .byline {
 	font-size: 90%;
 	color: #7D7870;
+	font-style: italic;
+	padding: 2px 0;
 }
 
 .navigation-links {
@@ -183,10 +191,10 @@ a:hover, .navigation-links a:hover {
 }
 .main-content {
 	text-align: left;
-	padding: 20px 0 10px 5px;
+	padding: 20px 0;
 }
 
-.main-content h1 {
+.main-content h1, h2 {
 	color: #009933;
 	font-weight: 300;
 }

@@ -5,8 +5,13 @@ class User < ActiveRecord::Base
 
 	has_many :breakpoints, :through => :pledges
 	has_many :pledges, foreign_key: "backer_id"
+
 	has_many :comments, :through => :projects
 	has_many :comments
+
+
+	has_many :backed_projects, through: :pledges, source: "project"
+
 end
 
 

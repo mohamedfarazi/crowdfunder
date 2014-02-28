@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery.countdownTimer
 //= require_tree .
+//= require chardinjs
