@@ -6,7 +6,7 @@
 			<p>Project Name: <%= link_to p.name,project_path(p) %></br>Project Goal: <%= number_to_currency(p.goal_in_cents.to_f/100) %></br>
 			Total Raised: <%= number_to_currency(total_pledges(p).to_f/100) %>
 			</p></br>
-		<% end %>
+			<% end %>
 		</div>
 
 		<div>
@@ -22,4 +22,13 @@
 		<%= total_raised %>
 		</div>
 	<% end %>
+	<% else %>
+		<h3>Here are <%= @user.name %>'s projects:</h3></br>
+		<% @user.projects.each do |p| %>
+		<p>Project Name: <%= link_to p.name,project_path(p) %></br>Project Goal: <%= number_to_currency(p.goal_in_cents.to_f/100) %></br>
+		Total Raised: <%= number_to_currency(total_pledges(p).to_f/100) %>
+		</p></br>
+	<% end %>
+
 <% end %>
+
