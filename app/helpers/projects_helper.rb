@@ -1,4 +1,6 @@
 module ProjectsHelper
+	include ActsAsTaggableOn::TagsHelper
+
 	def total_pledges(project)
 		total_pledges = 0;
 		project.breakpoints.each do |bp|

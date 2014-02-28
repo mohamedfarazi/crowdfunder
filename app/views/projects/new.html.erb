@@ -29,6 +29,10 @@
         	<%= f.text_field :image %>
         </p>
         <p class="form-label">
+          <%= f.label :tags, "Tags (comma-separated)" %></br>
+          <%= f.text_field :tag_list %>
+        </p>
+        <p class="form-label">
         	<%= f.submit "Next", class: "button" %>
         </p>
         <% end %>

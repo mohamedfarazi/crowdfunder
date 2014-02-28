@@ -30,8 +30,16 @@ class ProjectsController < ApplicationController
   def edit
   end
 
+  def tagged
+    if params[:tag].present?
+      @projects = Project.tagged_with(params[:tag])
+    else
+      @projects = Project.postall
+    end
+  end
+
   private
   def project_params
-    params.require(:project).permit(:name, :user_id, :goal_in_cents, :start_date, :end_date, :description, :image)
+    params.require(:project).permit(:name, :user_id, :goal_in_cents, :start_date, :end_date, :description, :image, :tag_list)
   end
 end

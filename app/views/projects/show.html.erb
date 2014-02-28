@@ -4,40 +4,22 @@
 		<div class="img-back">
 			<%= image_tag(@project.image, class: "img-full")  %>
 		</div>
-		<table class="prod-full">
-		<tr>
-			<th class="label-title">
-			<h3><%= @project[:name] %></h3>
-			</th>
-		</tr>
-		<tr>
-			<td class="byline">
-			<h4>by <%= @project.owner.name %></h4>
-			</td>
-		</tr>
-		<tr>
-			<td><h4>Goal: <%= display_money(@project.goal_in_cents) %></h4></td>
-		</tr>
-		<tr>
-			<td id="pledged">Raised: <%= display_money(total_pledges(@project)) %></td>
-		</tr>
-		<tr>
-			<td>Begins: <%= @project.start_date.strftime "%A, %-d %B %Y" %></td>
-		</tr>
-		<tr>
-			<td>Ends: <%= @project.end_date.strftime "%A, %-d %B %Y" %></td>
-		</tr>
-		<tr>
-			<td>
+		<div class="prod-full">
+			<h3 class="label-title"><%= @project[:name] %></h3>
+			<h4 class="byline">by <%= @project.owner.name %></h4>
+			<h4>Goal: <%= display_money(@project.goal_in_cents) %></h4>
+			<p id="pledged">Raised: <%= display_money(total_pledges(@project)) %></p>
+			<p>Begins: <%= @project.start_date.strftime "%A, %-d %B %Y" %></p>
+			<p>Ends: <%= @project.end_date.strftime "%A, %-d %B %Y" %></p>
 				<div id="countdowntimer">
 					<span id="future_date"></span>
 				</div>
-			</td>
-		</tr>
-		<tr>
-			<td><%= @project[:description] %></td>
-		</tr>
-		</table>
+			<p><%= @project[:description] %></p>
+			<% @project.tags.any? %>
+			  <% @project.tags.each do |tag| %>
+			  <%= link_to tag.name, tagged_url(:tag => tag.name) %>
+			<% end %>
+		</div>
 </div>
 
 	<div class="col3">
