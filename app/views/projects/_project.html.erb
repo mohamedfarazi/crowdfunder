@@ -9,8 +9,8 @@
 			</th>
 		</tr>
 		<tr>
-			<td>Goal: <%= number_to_currency(project.goal_in_cents.to_f/100) %></td>
-			<td>Raised: <%= number_to_currency(total_pledges(project).to_f/100)%></td>
+			<td>Goal:<br><%= display_money(project.goal_in_cents) %></td>
+			<td>Raised:<br><%= display_money(total_pledges(project))%></td>
 		</tr>
 	</table>
 	</div>

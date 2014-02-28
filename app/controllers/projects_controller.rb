@@ -14,6 +14,13 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    @project = Project.find(params[:id])
+
+    if @project.update_attributes(project_params)
+      redirect_to project_path(@project)
+    else
+      render :edit
+    end
   end
 
   def new
@@ -32,10 +39,19 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @project = Project.find(params[:id])
+  end
+
+  def tagged
+    if params[:tag].present?
+      @projects = Project.tagged_with(params[:tag])
+    else
+      @projects = Project.postall
+    end
   end
 
   private
   def project_params
-    params.require(:project).permit(:name, :user_id, :goal_in_cents, :start_date, :end_date, :description, :image)
+    params.require(:project).permit(:name, :user_id, :goal_in_cents, :start_date, :end_date, :description, :image, :tag_list)
   end
 end

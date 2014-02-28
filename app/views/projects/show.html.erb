@@ -4,40 +4,31 @@
 		<div class="img-back">
 			<%= image_tag(@project.image, class: "img-full")  %>
 		</div>
-		<table class="prod-full">
-		<tr>
-			<th class="label-title">
-			<h3><%= @project[:name] %></h3>
-			</th>
-		</tr>
-		<tr>
-			<td class="byline">
-			<h4>by <%= link_to @project.owner.name, user_path(@project.owner) %></h4>
-			</td>
-		</tr>
-		<tr>
-			<td><h4>Goal: <%= display_money(@project.goal_in_cents) %></h4></td>
-		</tr>
-		<tr>
-			<td id="pledged" data-intro='This is how much has been raised by other backers' data-position='right'>Raised: <%= display_money(total_pledges(@project)) %></td>
-		</tr>
-		<tr>
-			<td>Begins: <%= @project.start_date.strftime "%A, %-d %B %Y" %></td>
-		</tr>
-		<tr>
-			<td>Ends: <%= @project.end_date.strftime "%A, %-d %B %Y" %></td>
-		</tr>
-		<tr>
-			<td>
+		<div class="prod-full">
+			<h3 class="label-title"><%= @project[:name] %></h3>
+			<h4 class="byline">by <%= link_to @project.owner.name, user_path(@project.owner) %></h4>
+			<h4>Goal: <%= display_money(@project.goal_in_cents) %></h4>
+			<p id="pledged" data-intro='This is how much has been raised by other backers' data-position='right'>Raised: <%= display_money(total_pledges(@project)) %></p>
+			<p>Begins: <%= @project.start_date.strftime "%A, %-d %B %Y" %></p>
+			<p>Ends: <%= @project.end_date.strftime "%A, %-d %B %Y" %></p>
 				<div id="countdowntimer">
 					<span id="future_date"></span>
 				</div>
-			</td>
-		</tr>
-		<tr>
-			<td data-intro='This is the product description' data-position='right'><%= @project[:description] %></td>
-		</tr>
-		</table>
+			<p data-intro='This is the product description' data-position='right'><%= @project[:description] %></p>
+			<p class="main-content"><% @project.tags.any? %>
+				Tags:
+			  <% @project.tags.each do |tag| %>
+			  <%= link_to tag.name, tagged_url(:tag => tag.name) %>
+			  <% if tag != @project.tags.last %>
+			  |
+			  <% end  %>
+			<% end %></p>
+			  <% if @project.owner == current_user %>
+					<span class="navigation-links">
+					<%= link_to "Edit project details", edit_project_path(@project) %>
+					</span>
+			  <% end %>
+		</div>
 </div>
 
 	<div class="col3" data-intro='These are the different rewards you can pledge to. Remember that you cannot back out of a pledge once committed.' data-position='left'>
