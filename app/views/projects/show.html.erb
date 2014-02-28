@@ -32,6 +32,8 @@
 		</div>
 </div>
 
+<%= link_to "Comments", project_comments_path(@project) %>
+
 
 	<div class="col3">
 			<% @project.breakpoints.by_price.each do |bp| %>

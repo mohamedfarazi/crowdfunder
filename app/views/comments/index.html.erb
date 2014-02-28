@@ -1,0 +1,10 @@
+<h1>Project Comments</h1>
+
+<br>
+<br>
+
+<%= link_to "New Comment", new_project_comment_path(@project) %>
+
+<% @project.comments.each do |c| %>
+<%= c.description %>
+<% end %>
