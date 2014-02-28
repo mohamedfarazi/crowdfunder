@@ -12,14 +12,14 @@
 		</tr>
 		<tr>
 			<td class="byline">
-			<h4>by <%= @project.owner.name %></h4>
+			<h4>by <%= link_to @project.owner.name, user_path(@project.owner) %></h4>
 			</td>
 		</tr>
 		<tr>
 			<td><h4>Goal: <%= display_money(@project.goal_in_cents) %></h4></td>
 		</tr>
 		<tr>
-			<td id="pledged">Raised: <%= display_money(total_pledges(@project)) %></td>
+			<td id="pledged" data-intro='This is how much has been raised by other backers' data-position='right'>Raised: <%= display_money(total_pledges(@project)) %></td>
 		</tr>
 		<tr>
 			<td>Begins: <%= @project.start_date.strftime "%A, %-d %B %Y" %></td>
@@ -35,14 +35,15 @@
 			</td>
 		</tr>
 		<tr>
-			<td><%= @project[:description] %></td>
+			<td data-intro='This is the product description' data-position='right'><%= @project[:description] %></td>
 		</tr>
 		</table>
 </div>
 
-	<div class="col3">
+	<div class="col3" data-intro='These are the different rewards you can pledge to. Remember that you cannot back out of a pledge once committed.' data-position='left'>
+
 			<% @project.breakpoints.by_price.each do |bp| %>
-				<div class="prod-full" id="tier-<%= bp.id %>">
+				<div class="prod-full" id="tier-<%= bp.id %>" >
 						<div class="label-title">
 							<%= bp.title %>
 						</div>
@@ -72,9 +73,9 @@
 				<% end %>
 			</div>
 </div>
-</div>
-</div>
 
+</div>
+</div>
 <script type="text/javascript">
 $(function(){
 	$("#future_date").countdowntimer({
@@ -86,4 +87,14 @@ $(function(){
 	});
 });
 </script>
-
+<% if current_user %>
+	<% if @show_overlay %>
+		<script>
+			jQuery(document).ready(function($) {
+				window.setTimeout(function(){
+					$('body').chardinJs('start');
+				}, 1000)
+			});
+		</script>
+	<% end %>
+<% end %>

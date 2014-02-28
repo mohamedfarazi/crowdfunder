@@ -1,24 +1,25 @@
 <% if current_user %>
-	<div>
-	<h3>Here are your projects:</h3>
-		<% current_user.projects.each do |p| %>
-		<p>Project Name: <%= link_to p.name,project_path(p) %></br>Project Goal: <%= number_to_currency(p.goal_in_cents.to_f/100) %></br>
-		Total Raised: <%= number_to_currency(total_pledges(p).to_f/100) %>
-		</p></br>
+	<% if current_user.id == @user.id %>
+		<div>
+		<h3>Here are your projects:</h3>
+			<% current_user.projects.each do |p| %>
+			<p>Project Name: <%= link_to p.name,project_path(p) %></br>Project Goal: <%= number_to_currency(p.goal_in_cents.to_f/100) %></br>
+			Total Raised: <%= number_to_currency(total_pledges(p).to_f/100) %>
+			</p></br>
+		<% end %>
+		</div>
+
+		<div>
+		<h3>Here are the projects you have backed: </h3>
+			<% current_user.pledges.each do |bp|%>
+			<%= link_to bp.project.name, project_path(bp.project.id)%> | <%= number_to_currency(bp.breakpoint.amount_in_cents.to_f/100) %></br>
+			<%=  %>
+			<% end %></br>
+		</div>
+
+		<div>
+		<h3>Total amount pledged:</h3>
+		<%= total_raised %>
+		</div>
 	<% end %>
-	</div>
-
-	<div>
-	<h3>Here are the projects you have backed: </h3>
-		<% current_user.pledges.each do |bp|%>
-		<%= link_to bp.project.name, project_path(bp.project.id)%> | <%= number_to_currency(bp.breakpoint.amount_in_cents.to_f/100) %></br>
-		<%=  %>
-		<% end %></br>
-	</div>
-
-	<div>
-	<h3>Total amount pledged:</h3>
-	<%= total_raised %>
-	</div>
 <% end %>
-

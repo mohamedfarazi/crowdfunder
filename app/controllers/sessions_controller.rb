@@ -6,7 +6,9 @@ class SessionsController < ApplicationController
   def create
   	user = User.find_by_email(params[:email])
   	if user and user.authenticate(params[:password])
-  		session[:user_id] = user.id
+       user.last_logged_in = DateTime.now
+       user.save
+      session[:user_id] = user.id
   		redirect_to session[:return_to], :notice => "Login successful!"
   		session[:return_to] = nil
   	else

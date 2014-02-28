@@ -8,7 +8,7 @@ $('.pledge_button').click(function() {
   // $(this).closest("div").addClass("pledge_bp");
 });
 
-
+// $('body').chardinJs('start')
 
 
 });
