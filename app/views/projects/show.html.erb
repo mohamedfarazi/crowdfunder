@@ -15,9 +15,13 @@
 					<span id="future_date"></span>
 				</div>
 			<p><%= @project[:description] %></p>
-			<p><% @project.tags.any? %>
+			<p class="main-content"><% @project.tags.any? %>
+				Tags:
 			  <% @project.tags.each do |tag| %>
 			  <%= link_to tag.name, tagged_url(:tag => tag.name) %>
+			  <% if tag != @project.tags.last %>
+			  |
+			  <% end  %>
 			<% end %></p>
 			  <% if @project.owner == current_user %>
 					<span class="navigation-links">

@@ -1,5 +1,11 @@
 <div id="main">
 	<div id="projects" class="frame">
-	<%= render @projects %>
+		<div class="col1 main-content" >
+		<h1>Projects tagged "<%= params[:tag].upcase %>"</h1>
+		<%= render @projects %>
+		</div>
+	</div>
+	<div class="frame">
+	<%= link_to_function "Back", "history.back()"  %>
 	</div>
 </div>
