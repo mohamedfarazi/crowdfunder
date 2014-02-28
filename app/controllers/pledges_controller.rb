@@ -13,12 +13,21 @@ class PledgesController < ApplicationController
 		@pledge.breakpoint = @breakpoint
 		@pledge.active = true
 
-		if @pledge.save
-			redirect_to project_path(@breakpoint.project)
+	  @breakpoint_id = params[:bp_id]
 
+
+
+		if @pledge.save
+			respond_to do |format|
+		 		format.html { redirect_to project_path(@breakpoint.project) }
+		 		format.js
+	 		end
 		else
 		  redirect_to project_path(@breakpoint.project)
-	 end
+	  end
+
+
+
 
 	end
 

@@ -40,7 +40,6 @@
 		</table>
 </div>
 
-
 	<div class="col3">
 			<% @project.breakpoints.by_price.each do |bp| %>
 				<div class="prod-full" id="tier-<%= bp.id %>">
@@ -56,11 +55,11 @@
 								<h4 id="pledge_bp">You pledged at this tier</h4>
 								<% end %>
 							 <% elsif (@project.owner != current_user) %>
-								<%= form_tag('/pledges', remote: true, class: "breakpoint") do %>
-									<%= hidden_field_tag 'bp_id', bp.id %>
-									<%= submit_tag "Pledge at this tier ", class: "button pledge_button" %>
-								<% end %>
-								<% end %>
+									<%= form_tag('/pledges', remote: true, class: "breakpoint") do %>
+										<%= hidden_field_tag 'bp_id', bp.id %>
+										<%= submit_tag "Pledge at this tier ", class: "button pledge_button" %>
+									<% end %>
+							 <% end %>
 							<% end %>
 						</p>
 				</div>
