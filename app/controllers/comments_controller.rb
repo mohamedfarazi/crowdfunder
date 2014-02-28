@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
 
 	def create
 		@comment = @project.comments.build(comment_params)
-		@comment.user_id = current_user.id
+		@comment.user_id = current_user
 
 			if @comment.save
 				redirect_to project_comment_path(@project, @comment)
