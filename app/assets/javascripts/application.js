@@ -14,3 +14,4 @@
 //= require jquery_ujs
 //= require jquery.countdownTimer
 //= require_tree .
+//= require chardinjs

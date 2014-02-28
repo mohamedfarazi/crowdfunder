@@ -6,15 +6,15 @@
 		</div>
 		<div class="prod-full">
 			<h3 class="label-title"><%= @project[:name] %></h3>
-			<h4 class="byline">by <%= @project.owner.name %></h4>
+			<h4 class="byline">by <%= link_to @project.owner.name, user_path(@project.owner) %></h4>
 			<h4>Goal: <%= display_money(@project.goal_in_cents) %></h4>
-			<p id="pledged">Raised: <%= display_money(total_pledges(@project)) %></p>
+			<p id="pledged" data-intro='This is how much has been raised by other backers' data-position='right'>Raised: <%= display_money(total_pledges(@project)) %></p>
 			<p>Begins: <%= @project.start_date.strftime "%A, %-d %B %Y" %></p>
 			<p>Ends: <%= @project.end_date.strftime "%A, %-d %B %Y" %></p>
 				<div id="countdowntimer">
 					<span id="future_date"></span>
 				</div>
-			<p><%= @project[:description] %></p>
+			<p data-intro='This is the product description' data-position='right'><%= @project[:description] %></p>
 			<p class="main-content"><% @project.tags.any? %>
 				Tags:
 			  <% @project.tags.each do |tag| %>
@@ -31,9 +31,10 @@
 		</div>
 </div>
 
-	<div class="col3">
+	<div class="col3" data-intro='These are the different rewards you can pledge to. Remember that you cannot back out of a pledge once committed.' data-position='left'>
+
 			<% @project.breakpoints.by_price.each do |bp| %>
-				<div class="prod-full" id="tier-<%= bp.id %>">
+				<div class="prod-full" id="tier-<%= bp.id %>" >
 						<div class="label-title">
 							<%= bp.title %>
 						</div>
@@ -63,9 +64,9 @@
 				<% end %>
 			</div>
 </div>
-</div>
-</div>
 
+</div>
+</div>
 <script type="text/javascript">
 $(function(){
 	$("#future_date").countdowntimer({
@@ -77,4 +78,14 @@ $(function(){
 	});
 });
 </script>
-
+<% if current_user %>
+	<% if @show_overlay %>
+		<script>
+			jQuery(document).ready(function($) {
+				window.setTimeout(function(){
+					$('body').chardinJs('start');
+				}, 1000)
+			});
+		</script>
+	<% end %>
+<% end %>

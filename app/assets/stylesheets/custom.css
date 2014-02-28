@@ -194,7 +194,7 @@ a:hover, .navigation-links a:hover {
 	padding: 20px 0;
 }
 
-.main-content h1 {
+.main-content h1, h2 {
 	color: #009933;
 	font-weight: 300;
 }

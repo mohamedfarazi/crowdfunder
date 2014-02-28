@@ -32,6 +32,10 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    if current_user
+      @show_overlay = current_user.intro.nil?
+      current_user.update_attribute(:intro, true)
+    end
   end
 
   def edit
