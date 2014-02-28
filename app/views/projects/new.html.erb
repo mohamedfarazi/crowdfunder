@@ -3,39 +3,8 @@
       <div class="col1 main-content" >
         <h1>Start a project</h1>
 
-        <%= form_for @project do |f|%>
-        <p class="form-label">
-        	<%= f.label :name %></br>
-        	<%= f.text_field :name %>
-        </p>
-        <p class="form-label">
-      		<%= f.label :goal_in_cents %></br>
-      		<%= f.number_field :goal_in_cents %>
-      	</p>
-      	<p class="form-label">
-        	<%= f.label :start_date %></br>
-        	<%= f.datetime_select:start_date %>
-        </p>
-        <p class="form-label">
-        	<%= f.label :end_date %></br>
-        	<%= f.datetime_select :end_date %>
-        </p>
-        <p class="form-label">
-        	<%= f.label :description %></br>
-        	<%= f.text_area :description %>
-        </p>
-        <p class="form-label">
-        	<%= f.label :image %></br>
-        	<%= f.text_field :image %>
-        </p>
-        <p class="form-label">
-          <%= f.label :tags, "Tags (comma-separated)" %></br>
-          <%= f.text_field :tag_list %>
-        </p>
-        <p class="form-label">
-        	<%= f.submit "Next", class: "button" %>
-        </p>
-        <% end %>
+        <%= render partial: "project_form", locals: {label_text: "Next"} %>
+
       </div>
     </div>
   </div>

@@ -14,6 +14,13 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    @project = Project.find(params[:id])
+
+    if @project.update_attributes(product_params)
+      redirect_to project_path(@project)
+    else
+      render :edit
+    end
   end
 
   def new
@@ -28,6 +35,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @project = Project.find(params[:id])
   end
 
   def tagged
