@@ -4,7 +4,7 @@ def total_raised
 	current_user.breakpoints.each do |x|
 		raised += x.amount_in_cents
 	end
-	number_to_currency(raised.to_f/100)
+	raised
 end
 
 end

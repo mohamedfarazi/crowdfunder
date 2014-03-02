@@ -1,34 +1,48 @@
-<% if current_user %>
-	<% if current_user.id == @user.id %>
-		<div>
-		<h3>Here are your projects:</h3>
-			<% current_user.projects.each do |p| %>
-			<p>Project Name: <%= link_to p.name,project_path(p) %></br>Project Goal: <%= number_to_currency(p.goal_in_cents.to_f/100) %></br>
-			Total Raised: <%= number_to_currency(total_pledges(p).to_f/100) %>
-			</p></br>
+<div id="main">
+  <div class="frame">
+    <div class="col1" >
+
+			<% if current_user && (current_user.id == @user.id) %>
+				<div class="main-content">
+				<% if current_user.projects.length > 0  %>
+					<h4>Here are your projects:</h4></br>
+					<% current_user.projects.each do |p| %>
+						<p>Project Name: <%= link_to p.name,project_path(p) %></p>
+						<p>Project Goal: <%= display_money(p.goal_in_cents) %></p>
+						<p>Total Raised: <%= display_money(total_pledges(p)) %></p>
+						</br>
+					<% end %>
+				<% else %>
+					You haven't started any projects. <%= link_to "Start a new project", new_project_path %>
+				<% end %>
+				</div>
+
+				<div class="main-content">
+				<% if current_user.pledges.length > 0 %>
+					<h4>Here are the projects you backed: </h4>
+						<% current_user.pledges.each do |bp|%>
+							<p><%= link_to bp.project.name, project_path(bp.project.id)%> | <%= display_money(bp.breakpoint.amount_in_cents) %></p>
+						<% end %></br>
+					<h4>Total amount pledged:</h4>
+					<%= display_money(total_raised) %>
+				<% else  %>
+					You haven't backed any projects yet. <%= link_to "Explore project", projects_path %>
+				<% end %>
+				</div>
+
+			<% else %>
+				<% if @user.projects.length > 0  %>
+					<div class="main-content"><h4><%= @user.name.titleize %>'s projects:</h4></br>
+					<% @user.projects.each do |p| %>
+					<p>Project Name: <%= link_to p.name,project_path(p) %></p>
+					<p>Project Goal: <%= display_money(p.goal_in_cents) %></p>
+					<p>Total Raised: <%= display_money(total_pledges(p)) %></p>
+					</br>
+					<% end %></div>
+				<% else %>
+					<div class="main-content"><%= @user.name.titleize %> hasn't started any projects</div>
+				<% end %>
 			<% end %>
-		</div>
-
-		<div>
-		<h3>Here are the projects you have backed: </h3>
-			<% current_user.pledges.each do |bp|%>
-			<%= link_to bp.project.name, project_path(bp.project.id)%> | <%= number_to_currency(bp.breakpoint.amount_in_cents.to_f/100) %></br>
-			<%=  %>
-			<% end %></br>
-		</div>
-
-		<div>
-		<h3>Total amount pledged:</h3>
-		<%= total_raised %>
-		</div>
-	<% end %>
-	<% else %>
-		<h3>Here are <%= @user.name %>'s projects:</h3></br>
-		<% @user.projects.each do |p| %>
-		<p>Project Name: <%= link_to p.name,project_path(p) %></br>Project Goal: <%= number_to_currency(p.goal_in_cents.to_f/100) %></br>
-		Total Raised: <%= number_to_currency(total_pledges(p).to_f/100) %>
-		</p></br>
-	<% end %>
-
-<% end %>
-
+    </div>
+  </div>
+</div>
