@@ -31,7 +31,12 @@
 		</div>
 </div>
 
+
+<%= link_to "Comments", project_comments_path(@project) %>
+
+
 	<div class="col3" data-intro='These are the different rewards you can pledge to. Remember that you cannot back out of a pledge once committed.' data-position='left'>
+
 
 			<% @project.breakpoints.by_price.each do |bp| %>
 				<div class="prod-full" id="tier-<%= bp.id %>" >

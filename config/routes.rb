@@ -3,6 +3,7 @@ Crowdfunder::Application.routes.draw do
 
   resources :projects do
     resources :breakpoints, on: :collection
+    resources :comments
   end
   resources :pledges, :except => [:index]
   resources :users

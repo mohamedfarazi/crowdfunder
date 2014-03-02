@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 20140228225716) do
     t.integer  "limit"
   end
 
+  create_table "comments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
+    t.string   "title"
+    t.integer  "project_id"
+    t.integer  "user_id"
+  end
+
   create_table "pledges", force: true do |t|
     t.integer  "breakpoint_id"
     t.integer  "project_id"
