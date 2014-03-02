@@ -33,46 +33,51 @@
 </div>
 
 
-	<div class="col3 breakpoints" data-intro='These are the different rewards you can pledge to. Remember that you cannot back out of a pledge once committed.' data-position='left'>
-
-
-			<% @project.breakpoints.by_price.each do |bp| %>
-				<div class="prod-full" id="tier-<%= bp.id %>" >
-						<div class="label-title">
-							<%= bp.title %>
-						</div>
-						<h4 class="byline" id="pledges-<%= bp.id %>"><%= count_pledges(bp) %> backers
-							<% if bp.limit > 0 %>
-								&nbsp;&nbsp;&nbsp;<span class="limited">Limited: <%= bp.limit - count_pledges(bp) %> left of <%= bp.limit %></span>
-							<% end %>
-						</h4>
-						<p><%= display_money(bp.amount_in_cents) %></p>
-						<p><%= bp.description %></p>
-						<p>
-							<% if current_user %>
-							<% if backed_bp(current_user, @project) %>
-								<% if backed_bp(current_user, @project) == bp %>
-								<h4 id="pledge_bp">&#8594;You pledged at this tier</h4>
-								<% end %>
-							 <% elsif (@project.owner == current_user) %>
-							 		<p><%= link_to "Edit tier", edit_project_breakpoint_path(@project, bp) %></p>
-							 <% elsif ((bp.limit == 0) || (bp.limit - count_pledges(bp) > 0)) %>
-									<%= form_tag('/pledges', remote: true, class: "breakpoint") do %>
-										<%= hidden_field_tag 'bp_id', bp.id %>
-										<%= submit_tag "Pledge at this tier ", class: "button pledge_button" %>
-									<% end %>
-							 <% end %>
-							<% end %>
-						</p>
-				</div>
-			<% end %>
-			<div class="prod-full">
-				<% if @project.owner == current_user  %>
-					<p><%= link_to "Add another tier", new_project_breakpoint_path(@project) %></p>
-				<% elsif !current_user %>
-					<p>Please <%= link_to "log in", new_session_path %> or <%= link_to "register", new_user_path %> to back this project</p>
+<div class="col3 breakpoints" data-intro='These are the different rewards you can pledge to. Remember that you cannot back out of a pledge once committed.' data-position='left'>
+	<% @project.breakpoints.by_price.each do |bp| %>
+		<div class="prod-full" id="tier-<%= bp.id %>" >
+			<p class="label-title"><%= bp.title %></p>
+			<h4 class="byline" id="pledges-<%= bp.id %>"><%= count_pledges(bp) %> backers
+				<% if bp.limit > 0 %>
+				&nbsp;&nbsp;&nbsp;<span class="limited">Limited: <%= bp.limit - count_pledges(bp) %> left of <%= bp.limit %></span>
 				<% end %>
-			</div>
+			</h4>
+			<p><%= display_money(bp.amount_in_cents) %></p>
+			<p><%= bp.description %></p>
+			<p>
+				<% if current_user %>
+						<% if backed_bp(current_user, @project) %>
+							<% if backed_bp(current_user, @project) == bp %>
+								<h4 id="pledge_bp">&#8594;You pledged at this tier</h4>
+							<% end %>
+						<% elsif Time.now < @project.end_date %>
+									<% if (@project.owner == current_user) %>
+										<%= link_to "Edit tier", edit_project_breakpoint_path(@project, bp) %>
+									<% elsif ((bp.limit == 0) || (bp.limit - count_pledges(bp) > 0)) %>
+										<%= form_tag('/pledges', remote: true, class: "breakpoint") do %>
+											<%= hidden_field_tag 'bp_id', bp.id %>
+											<%= submit_tag "Pledge at this tier ", class: "button pledge_button" %>
+										<% end %>
+									<% end %>
+					 	<% end %>
+				 <% end %>
+			</p>
+		</div>
+	<% end %>
+
+	<div class="prod-full">
+		<p>
+			<% if time_to_close(@project) %>
+				<% if @project.owner == current_user  %>
+					<%= link_to "Add another tier", new_project_breakpoint_path(@project) %>
+				<% elsif !current_user %>
+					Please <%= link_to "log in", new_session_path %> or <%= link_to "register", new_user_path %> to back this project
+				<% end %>
+			<% else %>
+				Funding closed on <%= @project.end_date.strftime "%Y-%m-%d" %>
+			<% end %>
+		</p>
+	</div>
 </div>
 
 </div>
