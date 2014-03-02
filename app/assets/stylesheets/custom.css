@@ -84,7 +84,9 @@ body {
 	font-family: Arial, sans-serif;
 	color: #3B362F;
 }
-
+.breakpoints {
+	padding-top: 20px;
+}
 .img-thumb {
 	max-width: 240px;
 	max-height: 236px;
@@ -183,7 +185,7 @@ body {
 }
 .navigation-links {
 	float: right;
-	padding: 0 5px;
+	padding: 0 15px;
 }
 
 a, a:visited, .navigation-links a, .navigation-links a:visited {

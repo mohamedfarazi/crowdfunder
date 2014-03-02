@@ -1,6 +1,7 @@
 <div id="main">
 <div class="frame">
 	<div class="col66">
+	<div class="navigation-links"><%= link_to "Comments", project_comments_path(@project) %></div>
 		<div class="img-back">
 			<%= image_tag(@project.image, class: "img-full")  %>
 		</div>
@@ -32,10 +33,7 @@
 </div>
 
 
-<%= link_to "Comments", project_comments_path(@project) %>
-
-
-	<div class="col3" data-intro='These are the different rewards you can pledge to. Remember that you cannot back out of a pledge once committed.' data-position='left'>
+	<div class="col3 breakpoints" data-intro='These are the different rewards you can pledge to. Remember that you cannot back out of a pledge once committed.' data-position='left'>
 
 
 			<% @project.breakpoints.by_price.each do |bp| %>
