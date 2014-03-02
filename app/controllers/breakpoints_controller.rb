@@ -8,6 +8,9 @@ class BreakpointsController < ApplicationController
 	  def create
 	    @breakpoint = Breakpoint.new(breakpoint_params)
 	    @breakpoint.project = @project
+	    # if no limit is set on the form, assign value of 0
+	    @breakpoint.limit ||= 0
+
 	    if @breakpoint.save
 	      redirect_to project_path(@project)
 	    else
@@ -34,7 +37,7 @@ class BreakpointsController < ApplicationController
 
 	  private
 	  def breakpoint_params
-	    params.require(:breakpoint).permit(:title, :description, :amount_in_cents, :project_id)
+	    params.require(:breakpoint).permit(:title, :description, :amount_in_cents, :project_id, :limit)
 	  end
 
 	  def load_project
