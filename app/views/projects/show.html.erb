@@ -54,7 +54,7 @@
 								<% if backed_bp(current_user, @project) == bp %>
 								<h4 id="pledge_bp">&#8594;You pledged at this tier</h4>
 								<% end %>
-							 <% elsif (@project.owner != current_user) %>
+							 <% elsif (@project.owner != current_user) && ((bp.limit == 0) || (bp.limit - count_pledges(bp) > 0)) %>
 									<%= form_tag('/pledges', remote: true, class: "breakpoint") do %>
 										<%= hidden_field_tag 'bp_id', bp.id %>
 										<%= submit_tag "Pledge at this tier ", class: "button pledge_button" %>
