@@ -41,7 +41,7 @@
 						<div class="label-title">
 							<%= bp.title %>
 						</div>
-						<h4 class="byline"><%= count_pledges(bp) %> backers
+						<h4 class="byline" id="pledges-<%= bp.id %>"><%= count_pledges(bp) %> backers
 							<% if bp.limit > 0 %>
 								&nbsp;&nbsp;&nbsp;<span class="limited">Limited: <%= bp.limit - count_pledges(bp) %> left of <%= bp.limit %></span>
 							<% end %>
