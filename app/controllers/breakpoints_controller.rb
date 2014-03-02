@@ -5,6 +5,14 @@ class BreakpointsController < ApplicationController
 	    @breakpoints = Breakpoint.all
 	  end
 
+	  def show
+	    @breakpoint = Breakpoint.find(params[:id])
+	  end
+
+	  def new
+	    @breakpoint = Breakpoint.new
+	  end
+
 	  def create
 	    @breakpoint = Breakpoint.new(breakpoint_params)
 	    @breakpoint.project = @project
@@ -18,21 +26,24 @@ class BreakpointsController < ApplicationController
 	    end
 	  end
 
-	  def update
+	  def edit
+	      @breakpoint = Breakpoint.find(params[:id])
 	  end
 
-	  def new
-	    @breakpoint = Breakpoint.new
+	  def update
+
+	    @breakpoint = Breakpoint.find(params[:id])
+
+	    if @breakpoint.update_attributes(breakpoint_params)
+	    	@breakpoint.limit ||= 0
+	    	@breakpoint.save
+	      redirect_to project_path(@project)
+	    else
+	      render :edit
+	    end
 	  end
 
 	  def destroy
-	  end
-
-	  def show
-	    @breakpoint = Breakpoint.find(params[:id])
-	  end
-
-	  def edit
 	  end
 
 	  private

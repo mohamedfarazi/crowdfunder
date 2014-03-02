@@ -1,0 +1,23 @@
+  <%= form_for [@project, @breakpoint] do |f|%>
+  <%= render partial: "shared/form_errors", locals: {anyword: @breakpoint} %>
+  <p class="form-label">
+    <%= f.label :title %></br>
+    <%= f.text_field :title %>
+  </p>
+  <p class="form-label">
+    <%= f.label :amount_in_cents %></br>
+    <%= f.number_field :amount_in_cents %>
+  </p>
+    <p class="form-label">
+      <%= f.label :limit, "Max rewards available" %></br>
+      (0 or blank if unlimited)</br>
+      <%= f.number_field :limit, :min => 0, :placeholder => "Unlimited" %>
+    </p>
+  <p class="form-label">
+    <%= f.label :description %></br>
+    <%= f.text_area :description %>
+  </p>
+  <p class="form-label">
+    <%= f.submit "Create Reward Tier", class: "button" %>
+  </p>
+  <% end %>
