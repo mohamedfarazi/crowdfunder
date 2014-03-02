@@ -176,6 +176,11 @@ body {
 	padding: 2px 0;
 }
 
+.limited {
+	color: #FFFFFF;
+	background-color:  #7D7870;
+	padding: 0 2px;
+}
 .navigation-links {
 	float: right;
 	padding: 0 5px;
