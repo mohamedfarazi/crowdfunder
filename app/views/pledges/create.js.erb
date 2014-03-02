@@ -1,4 +1,4 @@
 $('#tier-<%= @breakpoint_id %>').css({'background-color': '#FFFFFF'});
-$('#tier-<%= @breakpoint_id %>').append('<b>You pledged at this tier</b>');
+$('#tier-<%= @breakpoint_id %>').append('<h4>&#8594;You pledged at this tier</h4>');
 $('#pledged').text("Raised: <%= display_money(total_pledges(@pledge.project)) %>");
 $('#pledges-<%= @breakpoint_id %>').html("<%= count_pledges(@pledge.breakpoint) %> backers <% if @pledge.breakpoint.limit > 0 %>&nbsp;&nbsp;&nbsp;<span class='limited'>Limited: <%= @pledge.breakpoint.limit - count_pledges(@pledge.breakpoint) %> left of <%= @pledge.breakpoint.limit %></span><% end %>");

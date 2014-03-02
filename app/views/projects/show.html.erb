@@ -52,7 +52,7 @@
 							<% if current_user %>
 							<% if backed_bp(current_user, @project) %>
 								<% if backed_bp(current_user, @project) == bp %>
-								<h4 id="pledge_bp">You pledged at this tier</h4>
+								<h4 id="pledge_bp">&#8594;You pledged at this tier</h4>
 								<% end %>
 							 <% elsif (@project.owner != current_user) %>
 									<%= form_tag('/pledges', remote: true, class: "breakpoint") do %>
