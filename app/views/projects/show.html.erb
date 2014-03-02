@@ -10,8 +10,8 @@
 			<h4 class="byline">by <%= link_to @project.owner.name, user_path(@project.owner) %></h4>
 			<h4>Goal: <%= display_money(@project.goal_in_cents) %></h4>
 			<p id="pledged" data-intro='This is how much has been raised by other backers' data-position='right'>Raised: <%= display_money(total_pledges(@project)) %></p>
-			<p>Begins: <%= @project.start_date.strftime "%A, %-d %B %Y" %></p>
-			<p>Ends: <%= @project.end_date.strftime "%A, %-d %B %Y" %></p>
+			<p>Begins: <%= @project.start_date.strftime "%-d %B %Y at %I:%M%P"%></p>
+			<p>Ends: <%= @project.end_date.strftime "%-d %B %Y at %I:%M%P" %></p>
 				<div id="countdowntimer">
 					<span id="future_date"></span>
 				</div>

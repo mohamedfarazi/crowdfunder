@@ -9,8 +9,17 @@
 			</th>
 		</tr>
 		<tr>
-			<td>Goal:<br><%= display_money(project.goal_in_cents) %></td>
-			<td>Raised:<br><%= display_money(total_pledges(project))%></td>
+			<th colspan="2">
+				<% if Time.now < project.end_date %>
+					Ends in <%= time_to_close(project) %>
+				<% else %>
+					Ended <%= project.end_date.strftime "%Y-%m-%d" %>
+				<% end %>
+			</th>
+		</tr>
+		<tr>
+			<td>Goal: <%= display_money_short(project.goal_in_cents) %></td>
+			<td>Raised: <%= display_money_short(total_pledges(project))%></td>
 		</tr>
 	</table>
 	</div>
