@@ -36,14 +36,12 @@ end
 gem 'bcrypt-ruby', '3.1.2'
 
 gem 'acts-as-taggable-on'
-# Use unicorn as the app server
-# gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
+# For deployment to heroku
+group :production do
+  gem 'rails_12factor'
+end
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
 
 group :development do
   gem "better_errors"
