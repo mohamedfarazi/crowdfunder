@@ -1,10 +1,36 @@
-<h1>Project Comments</h1>
+<div id="main">
+  <div class="frame">
+    <div class="col1 main-content" >
 
-<br>
-<br>
+			<h1>Project Comments</h1>
 
-<%= link_to "New Comment", new_project_comment_path(@project) %>
+			<% if @project.comments.length > 0 %>
+				<% @project.comments.each do |c| %>
+				<div class="review">
+					<h4><%= c.title.titleize %></h4>
+				  <p><%= c.description %></p>
+				  <em class="byline">Added on <%= c.created_at.localtime.strftime "%-d %B %Y" %> by <%= c.user.name %></em>
+				      <% if current_user && (c.user == current_user) %>
+				    		<span class="navigation-links">
+				    		<%= link_to "Edit", edit_project_comment_path(@project, c) %> | <%= link_to "Delete", project_comment_path(@project, c), :confirm => "Are you sure you want to delete this?", :method => :delete %>
+				    		</span>
+				      <% end %>
+				   </div>
+				   <% end %>
+			<% else %>
+				<div class="review">No one commented on this project yet</div>
+			<% end %>
+		</div>
+		<div class="col1 main-content" >
+			<% if current_user %>
+				<%= link_to "Add a comment", new_project_comment_path(@project) %>
+			<% else %>
+				Please <%= link_to "log in", new_session_path %> or <%= link_to "register", new_user_path %> to add a comment
+			<% end %>
 
-<% @project.comments.each do |c| %>
-<%= c.description %>
-<% end %>
+      </div>
+    </div>
+  <div class="frame">
+  <%= link_to_function "Back", "history.back()"  %>
+  </div>
+  </div>
