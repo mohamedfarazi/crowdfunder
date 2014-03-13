@@ -1,28 +1,51 @@
-== README
+Crowdfunder is a Kickstarter clone. It's built on Ruby on Rails v4.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+It's been uploaded to heroku and can be found here: http://damp-beach-1869.herokuapp.com/
 
-Things you may want to cover:
+Below are the stages of the user stories we followed to implement and build the app.
 
-* Ruby version
+=================================================================================================
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Iteration 1
+=========================
+As a Project Owner, I want to be able to create a new project with a title and a description
+As a Project Owner, I want to set a goal for my project
+As a Project Owner, I want to set a funding period (start date, finish date) for my project
+As a Project Owner, I want the ability to set funding breakpoints with a description of what backers will receive for each breakpoint
+As a Backer, I want to be able to back a project at a certain breakpoint
+should be able to click on a breakpoint and have it submitted with no page refresh
+once submitted, upon success, the amount raised should update
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Iteration 2
+=========================
+As a Project Owner, I want to see how many days are left before my project is done
+As a Backer, When viewing a project, it should be very clear whether I have backed the project or not
+As a Project Owner, I want to see the total amount of money raised as of right now
+As a Backer, I want to see all of the projects that I have backed
+As a Backer, I want to see the total amount of money I have spent on projects
+
+
+Iteration 3
+=========================
+As a Project Owner, To help people find my project, I want the ability to add it to a category
+As a Project Owner, To help people find my project, I want the ability to add various tags to my project
+As a Backer, I want to be able to see all projects in a particular category
+use infinite scrolling
+As a Backer, I want the ability to see all the projects associated with a particular tag
+use infinite scrolling
+As a Backer, I want to see who the owner of a project is
+
+
+Iteration 4
+=========================
+As a Backer, I want to be able to leave comments on a project
+The comment should be submitted via AJAX
+As a Backer, I want the ability to leave comments on a project owner
+The comment should be submitted via AJAX
+
+
+Iteration 5
+=========================
+As a Project Owner, I want to see how many people have funded my project at each breakpoint
+As a Backer, I want to be notified when any projects I am backing meet their goal and are fully funded
